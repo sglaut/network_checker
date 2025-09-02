@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  internet-monitor:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    container_name: internet-monitor
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/app/logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('https://www.google.com', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
