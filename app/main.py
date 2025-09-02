@@ -166,7 +166,7 @@ def main():
     setup_logging()
     
     # Конфигурация из переменных окружения
-    TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+    TELEGRAM_BOT_TOKEN = os.getenv('TOKEN', '')
     CHECK_INTERVAL = int(os.getenv('CHECK_INTERVAL', '60'))
     
     # Создаем экземпляр проверяльщика
